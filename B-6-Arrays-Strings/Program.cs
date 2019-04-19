@@ -12,8 +12,12 @@ namespace Base.Lesson_6
 		{
 			//Pyatnashki();
 			Console.ReadLine();
-			Bubblesort();
-
+			int[] massive = new int[5];
+			//VvodMassiva(massive);
+			//Bubblesort(massive);
+			//Insertionsort(massive);
+			//VivodMassiva(massive);
+			CutString();
 		}
 
 		public static void Pyatnashki()
@@ -71,40 +75,75 @@ namespace Base.Lesson_6
 				Console.WriteLine();
 			}
 		}
-		private static void Bubblesort()
+
+		private static void VvodMassiva(int[] massive)
 		{
-			int[] Data = new int[5];
+			//int[] massive = new int[5];
 			int k = 0;
 			Console.WriteLine("Введите массив");
 			while (k < 5)
 			{
 
-				Data[k] = int.Parse(Console.ReadLine());
+				massive[k] = int.Parse(Console.ReadLine());
 				Console.WriteLine();
 				k++;
 			}
+		}
 
-			for (int i = 0; i < Data.Length; i++)
+		private static void Bubblesort(int[] massive)
+		{
+			for (int i = 0; i < massive.Length; i++)
 			{
-				for (int j = 0; j < Data.Length - 1; j++)
+				for (int j = 0; j < massive.Length - 1; j++)
 				{
-					if (Data[j] > Data[j + 1])
+					if (massive[j] > massive[j + 1])
 					{
-						int z = Data[j];
-						Data[j] = Data[j + 1];
-						Data[j + 1] = z;
+						int z = massive[j];
+						massive[j] = massive[j + 1];
+						massive[j + 1] = z;
 					}
 				}
 			}
+		}
+		private static void VivodMassiva(int[] massive)
+		{
 			Console.WriteLine($"Отсортированный массив");
 			for (int l = 0; l < 5; l = l + 1)
-				Console.WriteLine($"{Data[l]}");
+				Console.WriteLine($"{massive[l]}");
 			Console.ReadKey();
 		}
-
-		public static void PoemExample()
+		private static void Insertionsort(int[] massive)
 		{
+			for (int i = 1; i < massive.Length; i++)
+			{
+				int j;
+				int buf = massive[i];
+				for (j = i - 1; j >= 0; j--)
+				{
+					if (massive[j] < buf)
+						break;
 
+					massive[j + 1] = massive[j];
+				}
+				massive[j + 1] = buf;
+			}
+		}
+
+		public static void CutString()
+		{
+			Console.WriteLine("ВВедите предложение");
+			string sentence = Console.ReadLine().ToString();
+			string sentnew = "";
+			if (sentence.Length > 13)
+			{
+				sentnew=sentence.Substring(0,13);
+			}
+			else
+			{
+				sentnew = sentence;
+			}
+			Console.WriteLine($"{sentnew.ToString()}");
+			Console.ReadKey();
 		}
 	}
 }

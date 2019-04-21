@@ -17,7 +17,8 @@ namespace Base.Lesson_6
 			//Bubblesort(massive);
 			//Insertionsort(massive);
 			//VivodMassiva(massive);
-			CutString();
+			//CutString();
+			ReplaceInPoem();
 		}
 
 		public static void Pyatnashki()
@@ -144,6 +145,19 @@ namespace Base.Lesson_6
 			}
 			Console.WriteLine($"{sentnew.ToString()}");
 			Console.ReadKey();
+		}
+		public static void ReplaceInPoem()
+		{
+			Console.WriteLine("ВВедите стихотворение");
+			string poem = Console.ReadLine().ToString();
+			string[] poemst=poem.Split(';');
+			string[] poemnew=poemst;;
+			for (int i = 0; i < poemst.Length; i++)
+			{
+				poemnew[i]=poemst[i].Replace("о","а").Replace("л","ль").Replace("т","ть");
+				Console.WriteLine($"{poemnew[i].ToString()}");
+			}
+			
 		}
 	}
 }

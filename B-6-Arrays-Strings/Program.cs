@@ -18,7 +18,12 @@ namespace Base.Lesson_6
 			//Insertionsort(massive);
 			//VivodMassiva(massive);
 			//CutString();
-			ReplaceInPoem();
+			//ReplaceInPoem();
+			var numbers = PyatnMass();
+			PyatnPrint(numbers);
+			PyatnGame(numbers);
+			Console.ReadKey();
+
 		}
 
 		public static void Pyatnashki()
@@ -151,7 +156,7 @@ namespace Base.Lesson_6
 			Console.WriteLine("ВВедите стихотворение");
 			string poem = Console.ReadLine().ToString();
 			string[] poemst=poem.Split(';');
-			string[] poemnew=poemst;;
+			string[] poemnew=poemst;
 			for (int i = 0; i < poemst.Length; i++)
 			{
 				poemnew[i]=poemst[i].Replace("о","а").Replace("л","ль").Replace("т","ть");
@@ -159,5 +164,89 @@ namespace Base.Lesson_6
 			}
 			
 		}
+		private static int[,] PyatnMass()
+        {
+            int[,] arr = new int[3, 3];
+            int number = 1;
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = number++;
+                }
+            }
+
+            arr[2, 2] = 0;
+            return arr;
+        }
+
+        private static void PyatnPrint(int[,] arr)
+        {
+            
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write(String.Format("{0,3}", arr[i, j]));
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void PyatnGame(int[,] arr)
+        {
+            var zeroI = 2;
+            var zeroJ = 2;
+
+
+
+            while (zeroI < 3 && zeroJ < 3)
+            {
+
+                char movement = Convert.ToChar(Console.ReadLine());
+                var i = zeroI;
+                var j = zeroJ;
+
+                switch (movement)
+                {
+                    case 'a':
+                        j--;
+                        break;
+                    case 's':
+                        i++;
+                        break;
+                    case 'd':
+                        j++;
+                        break;
+                    case 'w':
+                        i--;
+                        break;
+                    default:
+                        break;
+                }
+
+                try
+                {
+                    var swap = arr[i, j];
+                    arr[i, j] = arr[zeroI, zeroJ];
+                    arr[zeroI, zeroJ] = swap;
+
+                    zeroI = i;
+                    zeroJ = j;
+
+                    PyatnPrint(arr);
+                }
+
+                catch(IndexOutOfRangeException )
+                {
+                    Console.WriteLine("Выход из поля");
+                }
+
+            }
+                
+        }
 	}
 }
